@@ -4,8 +4,8 @@ public:
          vector<float>fraction;
         for(int i=0;i<arr.size();i++){
             for(int j=i+1;j<arr.size();j++){
-                // float frac=static_cast<float>(arr[i]) / static_cast<float>(arr[j]);
-                fraction.push_back(static_cast<float>(arr[i]) / static_cast<float>(arr[j]));
+                float frac=static_cast<float>(arr[i]) / static_cast<float>(arr[j]);
+                fraction.push_back(frac);
             }
         }
         sort(fraction.begin(),fraction.end());
@@ -13,8 +13,8 @@ public:
         vector<int> array;
         for(int i=0;i<arr.size();i++){
             for(int j=i+1;j<arr.size();j++){
-                //float frac=static_cast<float>(arr[i])/static_cast<float>(arr[j]);
-                if(static_cast<float>(arr[i])/static_cast<float>(arr[j])==temp){
+                float frac=static_cast<float>(arr[i])/static_cast<float>(arr[j]);
+                if(frac==temp){
                     array.push_back(arr[i]);
                     array.push_back(arr[j]);
                     break;
