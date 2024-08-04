@@ -24,27 +24,47 @@
 //         return finalSum;
 //     }
 // };
+// class Solution {
+// public:
+//     int rangeSum(vector<int>& nums, int n, int left, int right) {
+//         vector<int> subarraySums;
+//         int mod = pow(10, 9) + 7;
+
+//         for (int i = 0; i < n; ++i) {
+//             int currentSum = 0;
+//             for (int j = i; j < n; ++j) {
+//                 currentSum = (currentSum + nums[j]) % mod;
+//                 subarraySums.push_back(currentSum);
+//             }
+//         }
+
+//         sort(subarraySums.begin(), subarraySums.end());
+
+//         int finalSum = 0;
+//         for (int i = left - 1; i < right; ++i) {
+//             finalSum = (finalSum + subarraySums[i]) % mod;
+//         }
+
+//         return finalSum;
+//     }
+// };
 class Solution {
 public:
     int rangeSum(vector<int>& nums, int n, int left, int right) {
-        vector<int> subarraySums;
-        int mod = pow(10, 9) + 7;
-
-        for (int i = 0; i < n; ++i) {
-            int currentSum = 0;
+        int arr[n * (n + 1) / 2];
+        for (int i = 0, k = 0; i < n; ++i) {
+            int s = 0;
             for (int j = i; j < n; ++j) {
-                currentSum = (currentSum + nums[j]) % mod;
-                subarraySums.push_back(currentSum);
+                s += nums[j];
+                arr[k++] = s;
             }
         }
-
-        sort(subarraySums.begin(), subarraySums.end());
-
-        int finalSum = 0;
+        sort(arr, arr + n * (n + 1) / 2);
+        int ans = 0;
+        const int mod = 1e9 + 7;
         for (int i = left - 1; i < right; ++i) {
-            finalSum = (finalSum + subarraySums[i]) % mod;
+            ans = (ans + arr[i]) % mod;
         }
-
-        return finalSum;
+        return ans;
     }
 };
